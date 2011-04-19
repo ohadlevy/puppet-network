@@ -1,0 +1,13 @@
+#! /bin/sh
+
+CDPR="/usr/bin/cdpr"
+IF=`/bin/echo ${1}| /bin/sed 's/ifcfg-//'` # workaround needed for RHEL4
+
+if [ -f ${CDPR} -a "${IF:0:3}" == "eth" -a ! -z "${IF:3}" ]; then
+    UMASK=`umask`
+    umask u=rw,g=,o=
+    $CDPR -d $IF > /var/tmp/cdpr-$IF &
+    umask $UMASK
+else
+    echo "Usage: ${0} inetface"
+fi

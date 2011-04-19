@@ -1,0 +1,10 @@
+DEVICE=<%= name %>
+BOOTPROTO=static
+IPADDR=<%= eval("ipaddress_" + name) %>
+NETMASK=<%= eval("netmask_" + name) %>
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+HWADDR=<%= eval(" macaddress_" + name) %>
+GATEWAY=<%= gateway %>
+ETHTOOL_OPTS="-s <%= name %> wol g"

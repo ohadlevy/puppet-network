@@ -1,0 +1,5 @@
+DEVICE=<%= if_name %>
+ONBOOT=yes
+BOOTPROTO=none
+<%= "VLAN=yes\n" unless native -%>
+BRIDGE=br<%= vlan %>

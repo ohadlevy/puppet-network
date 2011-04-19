@@ -1,0 +1,6 @@
+DEVICE=br<%= vlan %>
+TYPE=Bridge
+STP=off
+ONBOOT=yes
+DELAY=0
+<%= "BOOTPROTO=dhcp\n" if native -%>

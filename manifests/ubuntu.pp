@@ -1,0 +1,2 @@
+class network::ubuntu {
+}
