@@ -1,10 +1,10 @@
 DEVICE=<%= name %>
 BOOTPROTO=static
-IPADDR=<%= eval("ipaddress_" + name) %>
-NETMASK=<%= eval("netmask_" + name) %>
+IPADDR=<%= eval("ipaddress_#{name} rescue ipaddress") %>
+NETMASK=<%= eval("netmask_#{name} rescue netmask") %>
 ONBOOT=yes
 TYPE=Ethernet
 USERCTL=no
-HWADDR=<%= eval(" macaddress_" + name) %>
+HWADDR=<%= eval(" macaddress_#{name} rescue macaddress") %>
 GATEWAY=<%= gateway %>
 ETHTOOL_OPTS="-s <%= name %> wol g"

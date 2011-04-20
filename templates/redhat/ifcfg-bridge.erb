@@ -3,4 +3,12 @@ TYPE=Bridge
 STP=off
 ONBOOT=yes
 DELAY=0
-<%= "BOOTPROTO=dhcp\n" if native -%>
+<% if native -%>
+BOOTPROTO=static
+IPADDR=<%=  eval("ipaddress_br#{vlan}  rescue ipaddress_#{phy_if}  rescue ipaddress")  %>
+NETMASK=<%= eval("netmask_br#{vlan}    rescue netmask_#{phy_if}    rescue netmask")    %>
+HWADDR=<%=  eval("macaddress_br#{vlan} rescue macaddress_#{phy_if} rescue macaddress") %>
+USERCTL=no
+GATEWAY=<%= gateway %>
+ETHTOOL_OPTS="-s <%= phy_if %> wol g"
+<% end -%>
