@@ -1,5 +1,9 @@
 DEVICE=<%= if_name %>
 ONBOOT=yes
 BOOTPROTO=none
-<%= "VLAN=yes\n" unless native -%>
+<% if native -%>
+HWADDR=<%=  eval("macaddress_#{phy_if} rescue macaddress") %>
+<% else -%>
+VLAN=yes
+<% end -%>
 BRIDGE=br<%= vlan %>
